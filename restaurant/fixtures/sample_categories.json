@@ -1,0 +1,30 @@
+[
+    {
+        "model": "restaurant.categorie",
+        "pk": 1,
+        "fields": {
+            "nom": "Pizza"
+        }
+    },
+    {
+        "model": "restaurant.categorie",
+        "pk": 2,
+        "fields": {
+            "nom": "Boisson"
+        }
+    },
+    {
+        "model": "restaurant.categorie",
+        "pk": 3,
+        "fields": {
+            "nom": "Burger"
+        }
+    },
+    {
+        "model": "restaurant.categorie",
+        "pk": 4,
+        "fields": {
+            "nom": "Pâtes"
+        }
+    }
+]

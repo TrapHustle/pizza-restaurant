@@ -1,0 +1,51 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+{% load currency_tags %}
+
+{% block title %}
+{{ plat.nom }} - Pizza Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_3.jpg' %}');" data-stellar-background-ratio="0.5">
+    <div class="overlay" style="background: rgba(0, 0, 0, 0.7);"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread" style="color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">{{ plat.nom }}</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{% url 'index' %}" style="color: #f1c40f;">Accueil <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span class="mr-2"><a href="{% url 'menu' %}" style="color: #f1c40f;">Menu <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span style="color: #fff;">{{ plat.nom }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ftco-animate">
+                <div class="img" style="background-image: url('{% if plat.image %}{{ plat.image.url }}{% else %}{% static 'images/default_plat.jpg' %}{% endif %}'); height: 400px; background-size: cover;"></div>
+            </div>
+            <div class="col-md-6 ftco-animate">
+                <h2>{{ plat.nom }}</h2>
+                <p class="price"><span>{{ plat.prix|format_fcfa }}</span></p>
+                <p>{{ plat.description|default:"Un plat délicieux préparé avec soin." }}</p>
+                <form method="post" action="{% url 'ajouter_au_panier' plat.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="quantite">Quantité :</label>
+                        <input type="number" name="quantite" id="quantite" class="form-control w-25 d-inline-block" value="1" min="1">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3" style="background-color: #f1c40f; border-color: #f1c40f; color: #000;">
+                        Ajouter au panier
+                    </button>
+                </form>
+                <a href="{% url 'menu' %}" class="btn btn-secondary mt-3">Retour au menu</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

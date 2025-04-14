@@ -1,0 +1,167 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ article.title }} - Pizza Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_3.jpg' %}');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread">{{ article.title }}</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{% url 'index' %}">Accueil <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span class="mr-2"><a href="{% url 'blog' %}">Blog <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span>{{ article.title|truncatechars:13 }} <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 ftco-animate">
+                <h2 class="mb-3">{{ article.title }}</h2>
+                <p class="article-image">
+                    <img src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'images/image_1.jpg' %}{% endif %}" alt="" class="img-fluid">
+                </p>
+                <p class="article-content">{{ article.content }}</p>
+                <div class="tag-widget post-tag-container mb-5 mt-5">
+                    <div class="tagcloud">
+                        {% for tag in article.tags.all %}
+                            <a href="#" class="tag-cloud-link">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="about-author d-flex p-4 bg-light">
+                    <div class="desc">
+                        <h3>{{ article.author.username }}</h3>
+                        <p>Publié le {{ article.published_at|date:"d F, Y" }}</p>
+                    </div>
+                </div>
+
+                <!-- Likes -->
+                <div class="pt-5 mt-5">
+                    <p>
+                        <a href="{% url 'like_article' article.pk %}" class="btn btn-primary">
+                            {% if user_has_liked %}
+                                Retirer le like ({{ article.likes.count }})
+                            {% else %}
+                                Liker ({{ article.likes.count }})
+                            {% endif %}
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Commentaires -->
+                <div class="pt-5 mt-5">
+                    <h3 class="mb-5">{{ article.comments.count }} Commentaire{{ article.comments.count|pluralize }}</h3>
+                    <ul class="comment-list">
+                        {% for comment in article.comments.all %}
+                            <li class="comment">
+                                <div class="comment-body">
+                                    <h3>{{ comment.author.username }}</h3>
+                                    <div class="meta">{{ comment.created_at|date:"d F, Y à H:i" }}</div>
+                                    <p class="comment-content">{{ comment.content }}</p>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <p>Aucun commentaire pour le moment.</p>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Formulaire de commentaire -->
+                    {% if user.is_authenticated %}
+                        <div class="comment-form-wrap pt-5">
+                            <h3 class="mb-5">Laisser un commentaire</h3>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                            <form action="{% url 'add_comment' article.pk %}" method="post" class="p-5 bg-light">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {{ comment_form.content }}
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Publier le commentaire" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    {% else %}
+                        <p><a href="{% url 'login' %}">Connectez-vous</a> pour laisser un commentaire.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.ftco-section .col-lg-8 {
+    padding: 20px;
+}
+
+.ftco-section h2.mb-3 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ftco-section .article-image {
+    margin-bottom: 20px;
+}
+
+.ftco-section .article-content {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 20;
+    -webkit-box-orient: vertical;
+}
+
+.ftco-section .tag-widget {
+    margin: 20px 0;
+}
+
+.ftco-section .about-author {
+    margin-bottom: 30px;
+}
+
+.ftco-section .comment-list .comment {
+    margin-bottom: 20px;
+}
+
+.ftco-section .comment-body h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.ftco-section .comment-body .meta {
+    margin-bottom: 10px;
+}
+
+.ftco-section .comment-content {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.ftco-section .btn-primary {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+    color: #000;
+}
+</style>
+{% endblock %}

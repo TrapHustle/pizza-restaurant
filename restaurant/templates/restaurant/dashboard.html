@@ -1,0 +1,117 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}
+Tableau de Bord - Pizza Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="home-slider owl-carousel img" style="background-image: url('{% static 'images/bg_1.jpg' %}');">
+    <div class="slider-item" style="background-image: url('{% static 'images/bg_3.jpg' %}');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text justify-content-center align-items-center">
+                <div class="col-md-7 col-sm-12 text-center ftco-animate">
+                    <h1 class="mb-3 mt-5 bread">Tableau de Bord</h1>
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="{% url 'index' %}">Accueil</a></span>
+                        <span>Tableau de Bord</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <!-- Bouton Créer un nouvel article -->
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <a href="{% url 'article_create' %}" class="btn btn-primary px-5 py-3" style="background-color: #f1c40f; border-color: #f1c40f; color: #000;">
+                    Créer un nouvel article
+                </a>
+            </div>
+        </div>
+
+        <!-- Messages de succès/erreur -->
+        {% if messages %}
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} animate__animated animate__fadeIn">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Liste des articles -->
+        <div class="row">
+            {% for article in articles %}
+                <div class="col-md-4 col-sm-6 mb-4 ftco-animate">
+                    <div class="card shadow-sm h-100" style="transition: transform 0.2s ease;">
+                        <a href="{% url 'blog_single' article.pk %}" 
+                           class="block-20 d-block rounded-top" 
+                           style="background-image: url('{% if article.image %}{{ article.image.url }}{% else %}{% static 'images/image_1.jpg' %}{% endif %}'); height: 200px; background-size: cover; background-position: center;">
+                        </a>
+                        <div class="card-body p-4">
+                            <h5 class="card-title text-dark">{{ article.title }}</h5>
+                            <p class="card-text text-muted">
+                                <i class="fas fa-calendar-alt mr-2"></i>{{ article.published_at|date:"d F, Y" }}<br>
+                                <i class="fas fa-tag mr-2"></i>{{ article.status|capfirst }}
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'article_edit' article.pk %}" 
+                                   class="btn btn-sm btn-outline-primary" 
+                                   style="border-color: #f1c40f; color: #f1c40f;">
+                                    Modifier
+                                </a>
+                                <a href="{% url 'article_delete' article.pk %}" 
+                                   class="btn btn-sm btn-outline-danger" 
+                                   onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
+                                    Supprimer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-md-12 text-center">
+                    <p class="text-muted">Vous n'avez créé aucun article pour le moment.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+    }
+    .block-20 {
+        transition: opacity 0.3s ease;
+    }
+    .block-20:hover {
+        opacity: 0.9;
+    }
+    .btn-outline-primary:hover {
+        background-color: #f1c40f !important;
+        color: #000 !important;
+    }
+    .btn-outline-danger:hover {
+        background-color: #dc3545 !important;
+        color: #fff !important;
+    }
+    @media (max-width: 576px) {
+        .card-body {
+            padding: 1rem !important;
+        }
+        .block-20 {
+            height: 150px !important;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block title %}Inscription - Pizza Restaurant{% endblock %}
+
+{% block content %}
+<section class="home-slider ow0l-carousel img" style="background-image: url('{% static 'images/bg_1.jpg' %}');">
+    <div class="slider-item" style="background-image: url('{% static 'images/bg_3.jpg' %}');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text justify-content-center align-items-center">
+                <div class="col-md-7 col-sm-12 text-center ftco-animate">
+                    <h1 class="mb-3 mt-5 bread">Inscription</h1>
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="{% url 'index' %}">Accueil</a></span>
+                        <span>Inscription</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">Créer un compte</h2>
+                <p>Inscrivez-vous pour commander vos plats préférés et suivre vos commandes.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5" style="background-color: rgba(0, 0, 0, 0.7); color: white;">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                        <span class="fa fa-user-plus"></span>
+                    </div>
+                    <h3 class="text-center mb-4">S'inscrire</h3>
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form method="post" class="signup-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.username.id_for_label }}">Nom d'utilisateur</label>
+                            {{ form.username }}
+                            {% if form.username.help_text %}
+                                <small class="form-text text-muted">{{ form.username.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Adresse e-mail</label>
+                            {{ form.email }}
+                            {% if form.email.help_text %}
+                                <small class="form-text text-muted">{{ form.email.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.password1.id_for_label }}">Mot de passe</label>
+                            {{ form.password1 }}
+                            {% if form.password1.help_text %}
+                                <small class="form-text text-muted">{{ form.password1.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.password2.id_for_label }}">Confirmer le mot de passe</label>
+                            {{ form.password2 }}
+                            {% if form.password2.help_text %}
+                                <small class="form-text text-muted">{{ form.password2.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary rounded submit p-3 px-5">S'inscrire</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <p>Déjà un compte ? <a href="{% url 'login' %}" class="text-white">Se connecter</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

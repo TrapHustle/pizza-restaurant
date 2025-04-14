@@ -1,0 +1,42 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}
+Supprimer l'article - Pizza Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_3.jpg' %}');" data-stellar-background-ratio="0.5">
+    <div class="overlay" style="background: rgba(0, 0, 0, 0.7);"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread" style="color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Supprimer l'article</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{% url 'index' %}" style="color: #f1c40f;">Accueil <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span class="mr-2"><a href="{% url 'dashboard' %}" style="color: #f1c40f;">Tableau de Bord <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span style="color: #fff;">Supprimer l'article <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 ftco-animate">
+                <div class="card shadow-sm p-5 text-center">
+                    <h2 class="mb-4 text-dark">Confirmer la suppression</h2>
+                    <p class="text-muted">Êtes-vous sûr de vouloir supprimer l'article "<strong>{{ object.title }}</strong>" ? Cette action est irréversible.</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger px-5 py-2">Oui, supprimer</button>
+                        <a href="{% url 'dashboard' %}" class="btn btn-secondary px-5 py-2">Annuler</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

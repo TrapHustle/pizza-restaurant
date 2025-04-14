@@ -1,0 +1,83 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}
+Modifier l'article - Pizza Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_3.jpg' %}');" data-stellar-background-ratio="0.5">
+    <div class="overlay" style="background: rgba(0, 0, 0, 0.7);"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread" style="color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Modifier l'article</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{% url 'index' %}" style="color: #f1c40f;">Accueil <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span class="mr-2"><a href="{% url 'dashboard' %}" style="color: #f1c40f;">Tableau de Bord <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span style="color: #fff;">Modifier l'article <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 ftco-animate">
+                <div class="card shadow-sm p-5">
+                    <h2 class="mb-4 text-dark">Modifier l'article</h2>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="{{ form.title.id_for_label }}" class="text-dark">Titre</label>
+                            {{ form.title|add_class:"form-control" }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.content.id_for_label }}" class="text-dark">Contenu</label>
+                            {{ form.content|add_class:"form-control"|attr:"rows:6" }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.image.id_for_label }}" class="text-dark">Image</label>
+                            {{ form.image|add_class:"form-control-file" }}
+                            {% if form.instance.image %}
+                                <img src="{{ form.instance.image.url }}" alt="Image actuelle" class="img-fluid mt-2" style="max-height: 200px;">
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.status.id_for_label }}" class="text-dark">Statut</label>
+                            {{ form.status|add_class:"form-control" }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.category.id_for_label }}" class="text-dark">Catégorie</label>
+                            {{ form.category|add_class:"form-control" }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.tags.id_for_label }}" class="text-dark">Tags</label>
+                            {{ form.tags|add_class:"form-control" }}
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary px-5 py-2" style="background-color: #f1c40f; border-color: #f1c40f; color: #000;">
+                                Enregistrer
+                            </button>
+                            <a href="{% url 'dashboard' %}" class="btn btn-secondary px-5 py-2">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

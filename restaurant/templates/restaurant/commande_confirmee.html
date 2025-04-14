@@ -1,0 +1,50 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}
+Commande Confirmée - Pizza Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_3.jpg' %}');" data-stellar-background-ratio="0.5">
+    <div class="overlay" style="background: rgba(0, 0, 0, 0.7);"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread" style="color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Commande Confirmée</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{% url 'index' %}" style="color: #f1c40f;">Accueil <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span style="color: #fff;">Commande Confirmée <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 ftco-animate">
+                <div class="card shadow-sm p-5 text-center">
+                    <h2 class="mb-4 text-dark">Commande Confirmée</h2>
+                    <div class="alert alert-success" role="alert">
+                        Votre commande a été confirmée avec succès !
+                    </div>
+                    <p class="text-muted">
+                        Merci pour votre commande.<br>
+                        <strong>Commande #:</strong> {{ commande.id }}<br>
+                        <strong>Mode de livraison :</strong> {{ commande.get_delivery_method_display }}<br>
+                        <strong>Mode de paiement :</strong> {{ commande.get_payment_method_display }}
+                    </p>
+                    <div class="mt-4">
+                        <a href="{% url 'suivi_commande' commande_id=commande.id %}" class="btn btn-success py-3 px-5 mr-2">Suivre la Commande</a>
+                        <a href="{% url 'index' %}" class="btn btn-primary py-3 px-5" style="background-color: #f1c40f; border-color: #f1c40f; color: #000;">
+                            Retour à l'accueil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

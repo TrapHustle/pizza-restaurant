@@ -1,0 +1,233 @@
+[
+    {
+        "model": "restaurant.plat",
+        "pk": 1,
+        "fields": {
+            "nom": "Italian Pizza",
+            "description": "Délicieuse pizza traditionnelle italienne, garnie de mozzarella fondante, sauce tomate fraîche et basilic.",
+            "prix": 6000,
+            "image": "plats/pizza-1.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 2,
+        "fields": {
+            "nom": "Greek Pizza",
+            "description": "Pizza inspirée de la Grèce, avec feta, olives noires, tomates fraîches et origan parfumé.",
+            "prix": 6000,
+            "image": "plats/pizza-2.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 3,
+        "fields": {
+            "nom": "Caucasian Pizza",
+            "description": "Pizza rustique aux saveurs du Caucase, garnie de fromage fondant et d'herbes aromatiques.",
+            "prix": 5000,
+            "image": "plats/pizza-3.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 4,
+        "fields": {
+            "nom": "American Pizza",
+            "description": "Pizza généreuse à l’américaine avec pepperoni, fromage cheddar et sauce barbecue fumée.",
+            "prix": 5500,
+            "image": "plats/pizza-4.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 5,
+        "fields": {
+            "nom": "Tomato Pie",
+            "description": "Tarte savoureuse aux tomates fraîches, mozzarella et herbes de Provence sur une pâte croustillante.",
+            "prix": 4500,
+            "image": "plats/pizza-5.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 6,
+        "fields": {
+            "nom": "Margherita",
+            "description": "Classique pizza Margherita avec sauce tomate, mozzarella fondante et feuilles de basilic frais.",
+            "prix": 5000,
+            "image": "plats/pizza-6.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 7,
+        "fields": {
+            "nom": "Hawaiian Pizza",
+            "description": "Pizza exotique garnie de jambon tendre et de morceaux d'ananas juteux, un mélange sucré-salé parfait.",
+            "prix": 7000,
+            "image": "plats/pizza-2.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 8,
+        "fields": {
+            "nom": "Bacon Crispy Thins",
+            "description": "Pizza fine et croustillante recouverte de bacon fumé croustillant et de fromage fondant.",
+            "prix": 6500,
+            "image": "plats/pizza-4.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 9,
+        "fields": {
+            "nom": "Hawaiian Special",
+            "description": "Version spéciale de la pizza hawaïenne, avec double portion d'ananas et de jambon rôti.",
+            "prix": 7500,
+            "image": "plats/pizza-5.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 10,
+        "fields": {
+            "nom": "Ultimate Overload",
+            "description": "Pizza ultra gourmande avec quatre fromages, pepperoni, bacon, champignons et oignons caramélisés.",
+            "prix": 8000,
+            "image": "plats/pizza-6.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 11,
+        "fields": {
+            "nom": "Bacon Pizza",
+            "description": "Pizza savoureuse au bacon croustillant, mozzarella fondante et sauce tomate épicée.",
+            "prix": 6000,
+            "image": "plats/pizza-7.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 12,
+        "fields": {
+            "nom": "Ham & Pineapple",
+            "description": "Pizza délicieuse avec jambon fumé et ananas sucré sur une base de sauce tomate maison.",
+            "prix": 6500,
+            "image": "plats/pizza-8.jpg",
+            "categorie": 1
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 13,
+        "fields": {
+            "nom": "Lemonade Juice",
+            "description": "Boisson rafraîchissante à base de citron frais, parfaite pour accompagner vos plats.",
+            "prix": 1000,
+            "image": "plats/drink-1.jpg",
+            "categorie": 2
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 14,
+        "fields": {
+            "nom": "Pineapple Juice",
+            "description": "Jus d'ananas frais, naturellement sucré et riche en vitamines pour une pause exotique.",
+            "prix": 1200,
+            "image": "plats/drink-2.jpg",
+            "categorie": 2
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 15,
+        "fields": {
+            "nom": "Soda Drinks",
+            "description": "Assortiment de sodas pétillants pour une touche sucrée et rafraîchissante à tout moment.",
+            "prix": 800,
+            "image": "plats/drink-3.jpg",
+            "categorie": 2
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 16,
+        "fields": {
+            "nom": "Burger Classic",
+            "description": "Burger classique avec steak juteux, laitue croquante, tomate fraîche et sauce maison.",
+            "prix": 3500,
+            "image": "plats/burger-1.jpg",
+            "categorie": 3
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 17,
+        "fields": {
+            "nom": "Cheeseburger",
+            "description": "Burger savoureux avec fromage fondant, steak grillé et cornichons croquants.",
+            "prix": 4000,
+            "image": "plats/burger-2.jpg",
+            "categorie": 3
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 18,
+        "fields": {
+            "nom": "BBQ Burger",
+            "description": "Burger gourmand avec sauce barbecue fumée, oignons caramélisés et steak tendre.",
+            "prix": 4500,
+            "image": "plats/burger-3.jpg",
+            "categorie": 3
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 19,
+        "fields": {
+            "nom": "Spaghetti Carbonara",
+            "description": "Spaghetti crémeux à la carbonara, avec pancetta croustillante et parmesan râpé.",
+            "prix": 5000,
+            "image": "plats/pasta-1.jpg",
+            "categorie": 4
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 20,
+        "fields": {
+            "nom": "Penne Arrabbiata",
+            "description": "Pâtes penne servies avec une sauce tomate épicée et une touche de piment rouge.",
+            "prix": 4500,
+            "image": "plats/pasta-2.jpg",
+            "categorie": 4
+        }
+    },
+    {
+        "model": "restaurant.plat",
+        "pk": 21,
+        "fields": {
+            "nom": "Lasagne Bolognese",
+            "description": "Délicieuses lasagnes à la bolognaise, riches en viande, sauce tomate et fromage fondant.",
+            "prix": 6000,
+            "image": "plats/pasta-3.jpg",
+            "categorie": 4
+        }
+    }
+]

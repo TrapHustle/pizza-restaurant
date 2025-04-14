@@ -1,0 +1,130 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}
+Suivi des Commandes - Pizza Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_3.jpg' %}');" data-stellar-background-ratio="0.5">
+    <div class="overlay" style="background: rgba(0, 0, 0, 0.7);"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread" style="color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Suivi des Commandes</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{% url 'index' %}" style="color: #f1c40f;">Accueil <i class="ion-ios-arrow-forward"></i></a></span>
+                    <span style="color: #fff;">Suivi des Commandes <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 ftco-animate">
+                <div class="card shadow-sm p-5">
+                    {% if latest_commande %}
+                        <h2 class="mb-4 text-center">Suivi de votre commande #{{ latest_commande.id }}</h2>
+                        <div class="progress-tracker">
+                            <div class="progress-step {% if latest_commande.statut == 'preparation' or latest_commande.statut == 'livreur' or latest_commande.statut == 'prete' %}active{% endif %}">
+                                <div class="step-icon"><i class="fas fa-utensils"></i></div>
+                                <p>Préparation</p>
+                            </div>
+                            <div class="progress-step {% if latest_commande.statut == 'livreur' or latest_commande.statut == 'prete' %}active{% endif %}">
+                                <div class="step-icon"><i class="fas fa-truck"></i></div>
+                                <p>Livreur</p>
+                            </div>
+                            <div class="progress-step {% if latest_commande.statut == 'prete' %}active{% endif %}">
+                                <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                                <p>Commande Prête</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <h2 class="mb-4 text-center">Aucune Commande</h2>
+                        <p class="text-center text-muted">Vous n’avez pas encore passé de commande.</p>
+                    {% endif %}
+                    <div class="text-center mt-4">
+                        <a href="{% url 'voir_panier' %}" class="btn btn-primary px-5 py-2" style="background-color: #f1c40f; border-color: #f1c40f; color: #000;">
+                            Retour au Panier
+                        </a>
+                        <a href="{% url 'index' %}" class="btn btn-secondary px-5 py-2 ml-2">
+                            Accueil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.progress-tracker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin: 40px 0;
+}
+
+.progress-tracker::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: #e0e0e0;
+    z-index: 0;
+}
+
+.progress-step {
+    text-align: center;
+    width: 33.33%;
+    z-index: 1;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background: #e0e0e0;
+    color: #666;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active .step-icon {
+    background: #f1c40f;
+    color: #fff;
+    animation: pulse 1.5s infinite;
+}
+
+.progress-step.active ~ .progress-step .step-icon {
+    background: #e0e0e0;
+    color: #666;
+}
+
+.progress-step p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.progress-step.active p {
+    color: #f1c40f;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+</style>
+{% endblock %}

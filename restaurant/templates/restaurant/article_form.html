@@ -1,0 +1,59 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}
+Créer un article - Pizza Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static 'images/bg_3.jpg' %}');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread">Créer un nouvel article</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'index' %}">Accueil <i class="ion-ios-arrow-forward"></i></a></span> <span>Créer un article <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="heading-section mb-4">Rédiger un article</h2>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_title">Titre</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_content">Contenu</label>
+                        {{ form.content }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_image">Image</label>
+                        {{ form.image }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_category">Catégorie</label>
+                        {{ form.category }}
+                    </div>
+                    <div class="form-group">
+                        <label>Tags</label>
+                        {{ form.tags }}
+                    </div>
+                    <button type="submit" class="btn btn-primary py-3 px-5">Soumettre l'article</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
